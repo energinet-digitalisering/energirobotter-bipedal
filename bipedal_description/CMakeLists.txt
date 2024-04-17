@@ -10,7 +10,7 @@ find_package(ament_cmake REQUIRED)
 
 # Install directories
 install(
-  DIRECTORY meshes urdf ros2_control 
+  DIRECTORY config meshes ros2_control urdf  
   DESTINATION share/${PROJECT_NAME}
 )
 
