@@ -1,0 +1,32 @@
+<?xml version="1.0" ?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+  <xacro:macro name="spine_control">
+
+    <xacro:include filename="$(find bipedal_description)/ros2_control/position_joint_control.ros2_control.xacro"/>
+
+    <ros2_control name="$spine" type="system">
+      <hardware>
+
+        <xacro:unless value="$(arg use_fake_hardware)">
+          <!-- Hardware components would go here. -->
+        </xacro:unless>
+
+        <xacro:if value="$(arg use_fake_hardware)">
+          <!-- Use gazebo as hardware simulation. -->
+          <xacro:if value="$(arg use_gazebo)">
+            <plugin>gazebo_ros2_control/GazeboSystem</plugin>
+          </xacro:if>
+
+          <!-- Use fake components. -->
+          <xacro:unless value="$(arg use_gazebo)">
+            <plugin>fake_components/GenericSystem</plugin>
+          </xacro:unless>
+        </xacro:if>
+      </hardware>
+
+      <xacro:position_joint_control name="$spine_joint"/>
+
+    </ros2_control>
+  </xacro:macro>
+</robot>

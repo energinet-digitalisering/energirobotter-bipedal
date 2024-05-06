@@ -1,0 +1,35 @@
+<?xml version="1.0" ?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+  <xacro:macro name="leg_control" params="side">
+
+    <xacro:include filename="$(find bipedal_description)/ros2_control/position_joint_control.ros2_control.xacro"/>
+
+    <ros2_control name="$leg_{side}" type="system">
+      <hardware>
+
+        <xacro:unless value="$(arg use_fake_hardware)">
+          <!-- Hardware components would go here. -->
+        </xacro:unless>
+
+        <xacro:if value="$(arg use_fake_hardware)">
+          <!-- Use gazebo as hardware simulation. -->
+          <xacro:if value="$(arg use_gazebo)">
+            <plugin>gazebo_ros2_control/GazeboSystem</plugin>
+          </xacro:if>
+
+          <!-- Use fake components. -->
+          <xacro:unless value="$(arg use_gazebo)">
+            <plugin>fake_components/GenericSystem</plugin>
+          </xacro:unless>
+        </xacro:if>
+      </hardware>
+
+      <xacro:position_joint_control name="$hip_hinge_joint.{side}"/>
+      <xacro:position_joint_control name="$thigh_joint.{side}"/>
+      <xacro:position_joint_control name="$leg_joint.{side}"/>
+      <xacro:position_joint_control name="$foot_joint.{side}"/>
+
+    </ros2_control>
+  </xacro:macro>
+</robot>

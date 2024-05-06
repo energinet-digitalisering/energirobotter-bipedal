@@ -1,272 +1,37 @@
 <?xml version="1.0"?>
-<robot name="bipedal" version="1.0">
-  <joint name="foot_joint.L" type="revolute">
-    <limit lower="-1.57000" upper="1.57000" effort="140.00000" velocity="0.00000"/>
-    <origin rpy="-0.00000 -0.00000 0.00000" xyz="0.41013 -0.06119 0.00000"/>
-    <parent link="link_leg.L"/>
-    <child link="link_foot.L"/>
-    <axis xyz="0.00000 0.00000 1.00000"/>
-  </joint>
-  <joint name="foot_joint.R" type="revolute">
-    <limit lower="-1.57000" upper="1.57000" effort="140.00000" velocity="0.00000"/>
-    <origin rpy="-0.00000 -0.00000 0.00000" xyz="0.41013 -0.06119 0.00000"/>
-    <parent link="link_leg.R"/>
-    <child link="link_foot.R"/>
-    <axis xyz="0.00000 0.00000 1.00000"/>
-  </joint>
-  <joint name="hip_hinge_joint.L" type="revolute">
-    <limit lower="-1.57000" upper="0.19625" effort="140.00000" velocity="0.00000"/>
-    <origin rpy="1.57080 0.00000 0.00000" xyz="-0.16035 0.00618 0.04211"/>
-    <parent link="link_hip"/>
-    <child link="link_hip_hinge.L"/>
-    <axis xyz="0.00000 0.00000 1.00000"/>
-  </joint>
-  <joint name="hip_hinge_joint.R" type="revolute">
-    <limit lower="-0.19625" upper="1.57000" effort="140.00000" velocity="0.00000"/>
-    <origin rpy="1.57080 0.00000 0.00000" xyz="0.16022 0.00618 0.04211"/>
-    <parent link="link_hip"/>
-    <child link="link_hip_hinge.R"/>
-    <axis xyz="0.00000 0.00000 1.00000"/>
-  </joint>
-  <joint name="leg_joint.L" type="revolute">
-    <limit lower="-1.57000" upper="1.57000" effort="140.00000" velocity="0.00000"/>
-    <origin rpy="-0.00000 -0.00000 0.00000" xyz="0.41043 0.10679 -0.00000"/>
-    <parent link="link_thigh.L"/>
-    <child link="link_leg.L"/>
-    <axis xyz="0.00000 0.00000 1.00000"/>
-  </joint>
-  <joint name="leg_joint.R" type="revolute">
-    <limit lower="-1.57000" upper="1.57000" effort="140.00000" velocity="0.00000"/>
-    <origin rpy="-0.00000 -0.00000 0.00000" xyz="0.41043 0.10679 -0.00000"/>
-    <parent link="link_thigh.R"/>
-    <child link="link_leg.R"/>
-    <axis xyz="0.00000 0.00000 1.00000"/>
-  </joint>
-  <joint name="spine_joint" type="revolute">
-    <limit lower="-0.78500" upper="0.78500" effort="140.00000" velocity="0.00000"/>
-    <origin rpy="1.57080 0.00000 0.00000" xyz="0.00000 -0.00037 0.10971"/>
-    <parent link="link_hip"/>
-    <child link="link_spine"/>
-    <axis xyz="0.00000 0.00000 1.00000"/>
-  </joint>
-  <joint name="thigh_joint.L" type="revolute">
-    <limit lower="-1.57000" upper="1.57000" effort="140.00000" velocity="0.00000"/>
-    <origin rpy="-1.57080 -0.00000 -1.57080" xyz="-0.00000 -0.11500 0.00000"/>
-    <parent link="link_hip_hinge.L"/>
-    <child link="link_thigh.L"/>
-    <axis xyz="0.00000 0.00000 1.00000"/>
-  </joint>
-  <joint name="thigh_joint.R" type="revolute">
-    <limit lower="-1.57000" upper="1.57000" effort="140.00000" velocity="0.00000"/>
-    <origin rpy="-1.57080 -0.00000 -1.57080" xyz="0.00000 -0.11500 0.00000"/>
-    <parent link="link_hip_hinge.R"/>
-    <child link="link_thigh.R"/>
-    <axis xyz="0.00000 0.00000 1.00000"/>
-  </joint>
-  <link name="link_foot.L">
-    <collision name="foot.L_collision">
-      <origin rpy="0.00000 -1.57080 0.00000" xyz="0.03058 0.00094 -0.00066"/>
-      <geometry>
-        <box size="0.08800 0.20808 0.08191"/>
-      </geometry>
-    </collision>
-    <inertial>
-      <inertia ixx="0.01042" ixy="0.00000" ixz="0.00000" iyy="0.00301" iyz="0.00000" izz="0.01063"/>
-      <origin rpy="0.00000 0.00000 0.00000" xyz="0.05241 -0.01025 0.00099"/>
-      <mass value="2.50000"/>
-    </inertial>
-    <visual name="foot.L">
-      <origin rpy="0.00000 -1.57080 0.00000" xyz="0.05241 -0.01025 0.00099"/>
-      <material name="Rubber"/>
-      <geometry>
-        <mesh filename="package://bipedal_description/meshes/stl/foot.L.stl" scale="1.00000 1.00000 1.00000"/>
-      </geometry>
-    </visual>
-  </link>
-  <link name="link_foot.R">
-    <collision name="foot.R_collision">
-      <origin rpy="0.00000 -1.57080 0.00000" xyz="0.03058 0.00094 -0.00066"/>
-      <geometry>
-        <box size="0.08800 0.20808 0.08191"/>
-      </geometry>
-    </collision>
-    <inertial>
-      <inertia ixx="0.01042" ixy="0.00000" ixz="0.00000" iyy="0.00301" iyz="0.00000" izz="0.01063"/>
-      <origin rpy="0.00000 0.00000 0.00000" xyz="0.05241 -0.01025 0.00099"/>
-      <mass value="2.50000"/>
-    </inertial>
-    <visual name="foot.R">
-      <origin rpy="0.00000 -1.57080 0.00000" xyz="0.05241 -0.01025 0.00099"/>
-      <material name="Rubber"/>
-      <geometry>
-        <mesh filename="package://bipedal_description/meshes/stl/foot.R.stl" scale="1.00000 1.00000 1.00000"/>
-      </geometry>
-    </visual>
-  </link>
-  <link name="link_hip">
-    <collision name="hip_collision">
-      <origin rpy="0.00000 0.00000 0.00000" xyz="-0.00593 0.00667 0.06788"/>
-      <geometry>
-        <box size="0.41640 0.13400 0.16853"/>
-      </geometry>
-    </collision>
-    <inertial>
-      <inertia ixx="0.00966" ixy="0.00000" ixz="0.00000" iyy="0.04204" iyz="0.00000" izz="0.03986"/>
-      <origin rpy="0.00000 0.00000 0.00000" xyz="-0.00168 0.00068 0.05535"/>
-      <mass value="2.50000"/>
-    </inertial>
-    <visual name="hip">
-      <origin rpy="0.00000 0.00000 0.00000" xyz="-0.00168 0.00068 0.05535"/>
-      <material name="Metal"/>
-      <geometry>
-        <mesh filename="package://bipedal_description/meshes/stl/hip.stl" scale="1.00000 1.00000 1.00000"/>
-      </geometry>
-    </visual>
-  </link>
-  <link name="link_hip_hinge.L">
-    <collision name="hip_hinge.L_collision">
-      <origin rpy="-1.57080 0.00000 0.00000" xyz="0.00000 -0.05750 0.00000"/>
-      <geometry>
-        <box size="0.08800 0.08800 0.20000"/>
-      </geometry>
-    </collision>
-    <inertial>
-      <inertia ixx="0.00995" ixy="0.00000" ixz="0.00000" iyy="0.00995" iyz="0.00000" izz="0.00323"/>
-      <origin rpy="0.00000 0.00000 0.00000" xyz="0.00000 -0.05750 0.00000"/>
-      <mass value="2.50000"/>
-    </inertial>
-    <visual name="hip_hinge.L">
-      <origin rpy="-1.57080 0.00000 0.00000" xyz="0.00000 -0.05750 0.00000"/>
-      <material name="Metal"/>
-      <geometry>
-        <mesh filename="package://bipedal_description/meshes/stl/hip_joint.L.stl" scale="1.00000 1.00000 1.00000"/>
-      </geometry>
-    </visual>
-  </link>
-  <link name="link_hip_hinge.R">
-    <collision name="hip_hinge.R_collision">
-      <origin rpy="-1.57080 0.00000 0.00000" xyz="0.00000 -0.05750 0.00000"/>
-      <geometry>
-        <box size="0.08800 0.08800 0.20000"/>
-      </geometry>
-    </collision>
-    <inertial>
-      <inertia ixx="0.00995" ixy="0.00000" ixz="0.00000" iyy="0.00995" iyz="0.00000" izz="0.00323"/>
-      <origin rpy="0.00000 0.00000 0.00000" xyz="0.00000 -0.05750 0.00000"/>
-      <mass value="2.50000"/>
-    </inertial>
-    <visual name="hip_hinge.R">
-      <origin rpy="-1.57080 0.00000 0.00000" xyz="0.00000 -0.05750 0.00000"/>
-      <material name="Metal"/>
-      <geometry>
-        <mesh filename="package://bipedal_description/meshes/stl/hip_joint.R.stl" scale="1.00000 1.00000 1.00000"/>
-      </geometry>
-    </visual>
-  </link>
-  <link name="link_leg.L">
-    <collision name="leg.L_collision">
-      <origin rpy="0.00000 -1.57080 0.00000" xyz="0.21005 -0.00389 0.00000"/>
-      <geometry>
-        <box size="0.08600 0.16459 0.45010"/>
-      </geometry>
-    </collision>
-    <inertial>
-      <inertia ixx="0.04785" ixy="0.00000" ixz="-0.00000" iyy="0.04375" iyz="0.00000" izz="0.00718"/>
-      <origin rpy="0.00000 0.00000 0.00000" xyz="0.20575 -0.01956 0.00000"/>
-      <mass value="2.50000"/>
-    </inertial>
-    <visual name="leg.L">
-      <origin rpy="0.00000 -1.57080 0.00000" xyz="0.20575 -0.01956 0.00000"/>
-      <material name="Metal"/>
-      <geometry>
-        <mesh filename="package://bipedal_description/meshes/stl/leg.L.stl" scale="1.00000 1.00000 1.00000"/>
-      </geometry>
-    </visual>
-  </link>
-  <link name="link_leg.R">
-    <collision name="leg.R_collision">
-      <origin rpy="0.00000 -1.57080 0.00000" xyz="0.21005 -0.00389 0.00000"/>
-      <geometry>
-        <box size="0.08600 0.16459 0.45010"/>
-      </geometry>
-    </collision>
-    <inertial>
-      <inertia ixx="0.04785" ixy="0.00000" ixz="-0.00000" iyy="0.04375" iyz="0.00000" izz="0.00718"/>
-      <origin rpy="0.00000 0.00000 0.00000" xyz="0.20575 -0.01956 0.00000"/>
-      <mass value="2.50000"/>
-    </inertial>
-    <visual name="leg.R">
-      <origin rpy="0.00000 -1.57080 0.00000" xyz="0.20575 -0.01956 0.00000"/>
-      <material name="Metal"/>
-      <geometry>
-        <mesh filename="package://bipedal_description/meshes/stl/leg.R.stl" scale="1.00000 1.00000 1.00000"/>
-      </geometry>
-    </visual>
-  </link>
-  <link name="link_spine">
-    <collision name="spine_collision">
-      <origin rpy="-1.57080 0.00000 0.00000" xyz="0.00239 0.04503 -0.03723"/>
-      <geometry>
-        <box size="0.09000 0.16247 0.17508"/>
-      </geometry>
-    </collision>
-    <inertial>
-      <inertia ixx="0.01189" ixy="0.00000" ixz="0.00000" iyy="0.00807" iyz="0.00000" izz="0.00719"/>
-      <origin rpy="0.00000 0.00000 0.00000" xyz="0.00254 0.05705 -0.02829"/>
-      <mass value="2.50000"/>
-    </inertial>
-    <visual name="spine">
-      <origin rpy="-1.57080 0.00000 0.00000" xyz="0.00254 0.05705 -0.02829"/>
-      <material name="Metal"/>
-      <geometry>
-        <mesh filename="package://bipedal_description/meshes/stl/spine.stl" scale="1.00000 1.00000 1.00000"/>
-      </geometry>
-    </visual>
-  </link>
-  <link name="link_thigh.L">
-    <collision name="thigh.L_collision">
-      <origin rpy="0.00000 -1.57080 0.00000" xyz="0.20523 0.05357 -0.00000"/>
-      <geometry>
-        <box size="0.13000 0.20794 0.49535"/>
-      </geometry>
-    </collision>
-    <inertial>
-      <inertia ixx="0.06013" ixy="0.00000" ixz="-0.00000" iyy="0.05464" iyz="0.00000" izz="0.01253"/>
-      <origin rpy="0.00000 0.00000 0.00000" xyz="0.20719 0.05489 0.00550"/>
-      <mass value="2.50000"/>
-    </inertial>
-    <visual name="thigh.L">
-      <origin rpy="0.00000 -1.57080 0.00000" xyz="0.20719 0.05489 0.00550"/>
-      <material name="Metal"/>
-      <geometry>
-        <mesh filename="package://bipedal_description/meshes/stl/thigh.L.stl" scale="1.00000 1.00000 1.00000"/>
-      </geometry>
-    </visual>
-  </link>
-  <link name="link_thigh.R">
-    <collision name="thigh.R_collision">
-      <origin rpy="0.00000 -1.57080 0.00000" xyz="0.20523 0.05357 0.00000"/>
-      <geometry>
-        <box size="0.13000 0.20794 0.49535"/>
-      </geometry>
-    </collision>
-    <inertial>
-      <inertia ixx="0.06013" ixy="0.00000" ixz="-0.00000" iyy="0.05464" iyz="0.00000" izz="0.01253"/>
-      <origin rpy="0.00000 0.00000 0.00000" xyz="0.20719 0.05489 0.00550"/>
-      <mass value="2.50000"/>
-    </inertial>
-    <visual name="thigh.R">
-      <origin rpy="0.00000 -1.57080 0.00000" xyz="0.20719 0.05489 0.00550"/>
-      <material name="Metal"/>
-      <geometry>
-        <mesh filename="package://bipedal_description/meshes/stl/thigh.R.stl" scale="1.00000 1.00000 1.00000"/>
-      </geometry>
-    </visual>
-  </link>
-  <material name="Metal">
-    <color rgba="0.80000 0.80000 0.80000 1.00000"/>
-  </material>
-  <material name="Rubber">
-    <color rgba="0.01176 0.01176 0.01176 1.00000"/>
-  </material>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="bipedal">
+
+  <!-- Macros -->
+
+  <xacro:include filename="$(find bipedal_description)/ros2_control/spine_control.ros2_control.xacro"/>
+  <xacro:include filename="$(find bipedal_description)/ros2_control/leg_control.ros2_control.xacro"/>
+
+  <!-- Arguments -->
+
+  <xacro:arg name="use_fake_hardware" default="true"/>
+  <xacro:arg name="use_gazebo" default="false"/>
+
+  <!-- Blender/Phobos generated description  -->
+
+  <!-- <link name="world"/>
+  <joint name="world_joint" type="fixed">
+      <origin xyz="0 0 1.0" rpy="0 0 0"/>
+      <parent link="world"/>
+      <child link="link_hip"/>
+  </joint> -->
+
+  <xacro:include filename="$(find bipedal_description)/urdf/phobos_generated.urdf"/>
+  <!-- NOTE: Change all relative paths "../" with "package://bipedal_description/" -->
+
+  <!-- <gazebo reference="link_hip">
+      <material>Gazebo/White</material>
+      <static>true</static>
+  </gazebo> -->
+
+  <!-- ROS 2 Control -->
+  
+  <xacro:spine_control/>
+  <xacro:leg_control side="$L"/>
+  <xacro:leg_control side="$R"/>
+
 </robot>
