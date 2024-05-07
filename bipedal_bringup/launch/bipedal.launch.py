@@ -1,5 +1,3 @@
-import os
-
 from launch import LaunchDescription
 from launch.actions import (
     DeclareLaunchArgument,
@@ -16,13 +14,8 @@ from launch_ros.descriptions import ParameterValue
 from launch_ros.substitutions import FindPackageShare
 
 
-FULL, LEFT, RIGHT = 'full', 'left', 'right'
-
-
 def launch_setup(context, *args, **kwargs):
 
-    config_rl = LaunchConfiguration("config")
-    config_py = config_rl.perform(context)
     start_rviz_rl = LaunchConfiguration("rviz")
     start_rviz_py = start_rviz_rl.perform(context)
     fake_rl = LaunchConfiguration("fake")
@@ -34,7 +27,7 @@ def launch_setup(context, *args, **kwargs):
         [
             PathJoinSubstitution([FindExecutable(name="xacro")]),
             " ",
-            PathJoinSubstitution([FindPackageShare("bipedal_description"), "urdf", "bipedal.urdf.xacro"]),
+            PathJoinSubstitution([FindPackageShare("bipedal_description"), "urdf", "bipedal.urdf"]),
             *(
                 (" ", "use_fake_hardware:=true", " ")
                 if fake_py
@@ -42,7 +35,6 @@ def launch_setup(context, *args, **kwargs):
                 if gazebo_py
                 else (" ",)
             ),
-            f"robot_config:={config_py}",
             " ",
         ]
     )
@@ -113,20 +105,12 @@ def launch_setup(context, *args, **kwargs):
         package="controller_manager",
         executable="spawner",
         arguments=["l_leg_forward_position_controller", "-c", "/controller_manager"],
-        condition=IfCondition(PythonExpression(
-            f"'{config_py}' in ['{FULL}', '{LEFT}']"
-            )
-        ),
     )
 
     r_leg_forward_position_controller_spawner = Node(
         package="controller_manager",
         executable="spawner",
         arguments=["r_leg_forward_position_controller", "-c", "/controller_manager"],
-        condition=IfCondition(PythonExpression(
-            f"'{config_py}' in ['{FULL}', '{RIGHT}']"
-            )
-        ),
     )
 
 
@@ -169,7 +153,6 @@ def launch_setup(context, *args, **kwargs):
 
     gazebo_node = IncludeLaunchDescription(
         PythonLaunchDescriptionSource([FindPackageShare("bipedal_gazebo"), "/launch", "/gazebo.launch.py"]),
-        launch_arguments={"robot_config": f"{config_py}"}.items(),
     )
 
     delay_robot_controller_spawner_after_joint_state_broadcaster_spawner = RegisterEventHandler(
@@ -191,7 +174,7 @@ def launch_setup(context, *args, **kwargs):
         robot_state_publisher_node,
         joint_state_broadcaster_spawner,
         delay_rviz_after_joint_state_broadcaster_spawner,
-        delay_robot_controller_spawner_after_joint_state_broadcaster_spawner,
+        # delay_robot_controller_spawner_after_joint_state_broadcaster_spawner,
         dynamic_state_router_node,
     ]
 
@@ -206,12 +189,6 @@ def generate_launch_description():
 
     return LaunchDescription(
         [
-            DeclareLaunchArgument(
-                "config",
-                default_value="full",
-                description="Configuration of bipedal system.",
-                choices=["full", "left", "right"],
-            ),
             DeclareLaunchArgument(
                 "rviz",
                 default_value="false",
