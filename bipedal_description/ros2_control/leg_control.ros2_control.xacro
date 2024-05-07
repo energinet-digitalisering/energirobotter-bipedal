@@ -5,7 +5,7 @@
 
     <xacro:include filename="$(find bipedal_description)/ros2_control/position_joint_control.ros2_control.xacro"/>
 
-    <ros2_control name="$leg_{side}" type="system">
+    <ros2_control name="leg_${side}" type="system">
       <hardware>
 
         <xacro:unless value="$(arg use_fake_hardware)">
@@ -25,10 +25,10 @@
         </xacro:if>
       </hardware>
 
-      <xacro:position_joint_control name="$hip_hinge_joint.{side}"/>
-      <xacro:position_joint_control name="$thigh_joint.{side}"/>
-      <xacro:position_joint_control name="$leg_joint.{side}"/>
-      <xacro:position_joint_control name="$foot_joint.{side}"/>
+      <xacro:position_joint_control name="$hip_hinge_joint.${side}"/>
+      <xacro:position_joint_control name="$thigh_joint.${side}"/>
+      <xacro:position_joint_control name="$leg_joint.${side}"/>
+      <xacro:position_joint_control name="$foot_joint.${side}"/>
 
     </ros2_control>
   </xacro:macro>

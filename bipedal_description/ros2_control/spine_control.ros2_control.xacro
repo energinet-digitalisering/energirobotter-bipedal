@@ -5,7 +5,7 @@
 
     <xacro:include filename="$(find bipedal_description)/ros2_control/position_joint_control.ros2_control.xacro"/>
 
-    <ros2_control name="$spine" type="system">
+    <ros2_control name="spine" type="system">
       <hardware>
 
         <xacro:unless value="$(arg use_fake_hardware)">
@@ -25,7 +25,7 @@
         </xacro:if>
       </hardware>
 
-      <xacro:position_joint_control name="$spine_joint"/>
+      <xacro:position_joint_control name="spine_joint"/>
 
     </ros2_control>
   </xacro:macro>
