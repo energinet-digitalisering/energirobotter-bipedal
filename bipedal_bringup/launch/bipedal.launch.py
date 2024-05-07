@@ -53,9 +53,9 @@ def launch_setup(context, *args, **kwargs):
 
     robot_controllers = PathJoinSubstitution(
         [
-            FindPackageShare("bipedal_bringup"),
-            "config",
-            f"bipedal_{config_py}_controllers.yaml",
+            FindPackageShare("bipedal_description"),
+            "controllers",
+            f"bipedal_controllers.yaml",
         ]
     )
 
