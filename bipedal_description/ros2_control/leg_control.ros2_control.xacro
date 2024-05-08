@@ -25,10 +25,10 @@
         </xacro:if>
       </hardware>
 
-      <xacro:position_joint_control name="$hip_hinge_joint.${side}"/>
-      <xacro:position_joint_control name="$thigh_joint.${side}"/>
-      <xacro:position_joint_control name="$leg_joint.${side}"/>
-      <xacro:position_joint_control name="$foot_joint.${side}"/>
+      <xacro:position_joint_control name="hip_hinge_joint.${side}"/>
+      <xacro:position_joint_control name="thigh_joint.${side}"/>
+      <xacro:position_joint_control name="leg_joint.${side}"/>
+      <xacro:position_joint_control name="foot_joint.${side}"/>
 
     </ros2_control>
   </xacro:macro>
