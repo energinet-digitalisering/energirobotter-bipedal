@@ -21,12 +21,12 @@
   </joint> -->
 
 
-  <link name="world"/>
   <joint name="world_joint" type="fixed">
-        <origin xyz="0 0 0.964145" rpy="0 0 0"/>  <!-- 0.964145 is the height of the robot form its origin -->
+      <origin xyz="0 0 0.964145" rpy="0 0 0"/>  <!-- 0.964145 is the height of the robot from its origin -->
       <parent link="world"/>
       <child link="link_hip"/>
   </joint>
+  <link name="world"/>
 
   <xacro:include filename="$(find bipedal_description)/urdf/phobos_generated.urdf"/>
   <!-- NOTE: Change all relative paths "../" with "package://bipedal_description/" -->
