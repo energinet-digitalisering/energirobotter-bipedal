@@ -174,7 +174,7 @@ def launch_setup(context, *args, **kwargs):
         robot_state_publisher_node,
         joint_state_broadcaster_spawner,
         delay_rviz_after_joint_state_broadcaster_spawner,
-        # delay_robot_controller_spawner_after_joint_state_broadcaster_spawner,
+        delay_robot_controller_spawner_after_joint_state_broadcaster_spawner,
         dynamic_state_router_node,
     ]
 
