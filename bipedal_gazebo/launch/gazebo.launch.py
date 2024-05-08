@@ -7,7 +7,6 @@ from launch.launch_description_sources import PythonLaunchDescriptionSource
 
 
 def launch_setup(context, *args, **kwargs):
-    robot_config = LaunchConfiguration('robot_config', default='full_kit')
 
     # Launch Gazebo
     gazebo = IncludeLaunchDescription(
@@ -19,7 +18,6 @@ def launch_setup(context, *args, **kwargs):
             ])
         ),
         launch_arguments={'verbose': 'true'}.items(),
-
     )
 
     # Note: Environment variable GAZEBO_MODEL_PATH is extended as in
@@ -43,7 +41,6 @@ def launch_setup(context, *args, **kwargs):
         package="bipedal_gazebo",
         executable="fake_gz_interface",
         output="screen",
-        parameters=[{'robot_config': f'{robot_config.perform(context)}'}]
     )
 
     return [
@@ -61,10 +58,7 @@ def generate_launch_description():
                 "robot_name",
                 default_value="reachy_bipedal",
                 description="Set robot name."),
-            DeclareLaunchArgument(
-                "robot_config",
-                default_value="full",
-                description="Robot configuration."),
+
             OpaqueFunction(function=launch_setup),
         ]
     )
