@@ -30,14 +30,20 @@ joint_state_broadcaster:
 l_leg_forward_position_controller:
   ros__parameters:
     joints:
-      - l_leg_pitch
+      - hip_hinge_joint.L
+      - leg_joint.L
+      - thigh_joint.L
+      - foot_joint.L
     interface_name: position
     use_sim_time: false
 
 r_leg_forward_position_controller:
   ros__parameters:
     joints:
-      - r_leg_pitch
+      - hip_hinge_joint.R
+      - leg_joint.R
+      - thigh_joint.R
+      - foot_joint.R
     interface_name: position
     use_sim_time: false
 
@@ -45,24 +51,45 @@ r_leg_forward_position_controller:
 forward_torque_controller:
   ros__parameters:
     joints:
-      - l_leg_pitch
-      - r_leg_pitch
+      - spine_joint
+      - hip_hinge_joint.L
+      - hip_hinge_joint.R
+      - leg_joint.L
+      - leg_joint.R
+      - thigh_joint.L
+      - thigh_joint.R
+      - foot_joint.L
+      - foot_joint.R
     interface_name: torque
     use_sim_time: false
 
 forward_torque_limit_controller:
   ros__parameters:
     joints:
-      - l_leg_pitch
-      - r_leg_pitch
+      - spine_joint
+      - hip_hinge_joint.L
+      - hip_hinge_joint.R
+      - leg_joint.L
+      - leg_joint.R
+      - thigh_joint.L
+      - thigh_joint.R
+      - foot_joint.L
+      - foot_joint.R
     interface_name: torque_limit
     use_sim_time: false
 
 forward_speed_limit_controller:
   ros__parameters:
     joints:
-      - l_leg_pitch
-      - r_leg_pitch
+      - spine_joint
+      - hip_hinge_joint.L
+      - hip_hinge_joint.R
+      - leg_joint.L
+      - leg_joint.R
+      - thigh_joint.L
+      - thigh_joint.R
+      - foot_joint.L
+      - foot_joint.R
     interface_name: speed_limit
     use_sim_time: false
 
@@ -70,6 +97,13 @@ forward_speed_limit_controller:
 forward_pid_controller:
   ros__parameters:
     joints:
-      - l_leg_pitch
-      - r_leg_pitch
+      - spine_joint
+      - hip_hinge_joint.L
+      - hip_hinge_joint.R
+      - leg_joint.L
+      - leg_joint.R
+      - thigh_joint.L
+      - thigh_joint.R
+      - foot_joint.L
+      - foot_joint.R
     use_sim_time: false
