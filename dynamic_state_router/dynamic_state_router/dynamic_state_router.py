@@ -333,7 +333,7 @@ def main():
 
     rclpy.init()
     node = DynamicStateRouterNode(
-        node_name='dynanic_state_router_node',
+        node_name='dynamic_state_router_node',
         controllers_file=args.controllers_file,
     )
     rclpy.spin(node)
