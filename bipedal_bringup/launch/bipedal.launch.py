@@ -31,7 +31,7 @@ def launch_setup(context, *args, **kwargs):
             *(
                 (" ", "use_fake_hardware:=true", " ")
                 if fake_py
-                else (" ", "use_fake_hardware:=true use_gazebo:=true depth_camera:=true", " ")
+                else (" ", "use_fake_hardware:=true use_gazebo:=true", " ")
                 if gazebo_py
                 else (" ",)
             ),
