@@ -153,6 +153,7 @@ def launch_setup(context, *args, **kwargs):
 
     gazebo_node = IncludeLaunchDescription(
         PythonLaunchDescriptionSource([FindPackageShare("bipedal_gazebo"), "/launch", "/gazebo.launch.py"]),
+        condition=IfCondition(LaunchConfiguration('gazebo'))
     )
 
     delay_robot_controller_spawner_after_joint_state_broadcaster_spawner = RegisterEventHandler(

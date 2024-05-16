@@ -13,14 +13,6 @@
 
   <!-- Blender/Phobos generated description  -->
 
-  <!-- <link name="world"/>
-  <joint name="world_joint" type="fixed">
-      <origin xyz="0 0 1.0" rpy="0 0 0"/>
-      <parent link="world"/>
-      <child link="link_hip"/>
-  </joint> -->
-
-
   <joint name="world_joint" type="fixed">
       <origin xyz="0 0 0.964145" rpy="0 0 0"/>  <!-- 0.964145 is the height of the robot from its origin -->
       <parent link="world"/>
@@ -31,10 +23,10 @@
   <xacro:include filename="$(find bipedal_description)/urdf/phobos_generated.urdf"/>
   <!-- NOTE: Change all relative paths "../" with "package://bipedal_description/" -->
 
-  <!-- <gazebo reference="link_hip">
+  <gazebo reference="link_hip">
       <material>Gazebo/White</material>
       <static>true</static>
-  </gazebo> -->
+  </gazebo>
 
   <!-- ROS 2 Control -->
   
