@@ -1,5 +1,9 @@
 from launch.launch_description import LaunchDescription
-from launch.actions import IncludeLaunchDescription, DeclareLaunchArgument, OpaqueFunction
+from launch.actions import (
+    IncludeLaunchDescription,
+    DeclareLaunchArgument,
+    OpaqueFunction,
+)
 from launch.substitutions import PathJoinSubstitution, LaunchConfiguration
 from launch_ros.substitutions import FindPackageShare
 from launch_ros.actions import Node
@@ -11,13 +15,15 @@ def launch_setup(context, *args, **kwargs):
     # Launch Gazebo
     gazebo = IncludeLaunchDescription(
         PythonLaunchDescriptionSource(
-            PathJoinSubstitution([
-                FindPackageShare("gazebo_ros"),
-                "launch",
-                "gazebo.launch.py",
-            ])
+            PathJoinSubstitution(
+                [
+                    FindPackageShare("gazebo_ros"),
+                    "launch",
+                    "gazebo.launch.py",
+                ]
+            )
         ),
-        launch_arguments={'verbose': 'true'}.items(),
+        launch_arguments={"verbose": "true"}.items(),
     )
 
     # Note: Environment variable GAZEBO_MODEL_PATH is extended as in
@@ -28,13 +34,16 @@ def launch_setup(context, *args, **kwargs):
         package="gazebo_ros",
         executable="spawn_entity.py",
         arguments=[
-            "-topic", "robot_description",
-            "-entity", LaunchConfiguration("robot_name"),
+            "-topic",
+            "robot_description",
+            "-entity",
+            LaunchConfiguration("robot_name"),
             # "-x","3.6",
             # "-y","2.1",
-            "-z","0.084",
+            "-z",
+            "0.084",
         ],
-        output="screen"
+        output="screen",
     )
 
     fake_gz_interface = Node(
@@ -45,7 +54,7 @@ def launch_setup(context, *args, **kwargs):
 
     return [
         gazebo,
-        fake_gz_interface,
+        # fake_gz_interface,
         spawn_entity,
     ]
 
@@ -57,8 +66,8 @@ def generate_launch_description():
             DeclareLaunchArgument(
                 "robot_name",
                 default_value="reachy_bipedal",
-                description="Set robot name."),
-
+                description="Set robot name.",
+            ),
             OpaqueFunction(function=launch_setup),
         ]
     )

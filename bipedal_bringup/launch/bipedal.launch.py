@@ -7,7 +7,13 @@ from launch.actions import (
 )
 from launch.conditions import IfCondition
 from launch.event_handlers import OnProcessExit
-from launch.substitutions import Command, FindExecutable, LaunchConfiguration, PathJoinSubstitution, PythonExpression
+from launch.substitutions import (
+    Command,
+    FindExecutable,
+    LaunchConfiguration,
+    PathJoinSubstitution,
+    PythonExpression,
+)
 from launch.launch_description_sources import PythonLaunchDescriptionSource
 from launch_ros.actions import Node, SetUseSimTime
 from launch_ros.descriptions import ParameterValue
@@ -27,13 +33,17 @@ def launch_setup(context, *args, **kwargs):
         [
             PathJoinSubstitution([FindExecutable(name="xacro")]),
             " ",
-            PathJoinSubstitution([FindPackageShare("bipedal_description"), "urdf", "bipedal.urdf"]),
+            PathJoinSubstitution(
+                [FindPackageShare("bipedal_description"), "urdf", "bipedal.urdf"]
+            ),
             *(
                 (" ", "use_fake_hardware:=true", " ")
                 if fake_py
-                else (" ", "use_fake_hardware:=true use_gazebo:=true", " ")
-                if gazebo_py
-                else (" ",)
+                else (
+                    (" ", "use_fake_hardware:=true use_gazebo:=true", " ")
+                    if gazebo_py
+                    else (" ",)
+                )
             ),
             " ",
         ]
@@ -59,7 +69,6 @@ def launch_setup(context, *args, **kwargs):
         ]
     )
 
-
     control_node = Node(
         package="controller_manager",
         executable="ros2_control_node",
@@ -84,7 +93,11 @@ def launch_setup(context, *args, **kwargs):
     )
 
     gazebo_state_broadcaster_params = PathJoinSubstitution(
-        [FindPackageShare("bipedal_gazebo"), "config", "gz_state_broadcaster_params.yaml"]
+        [
+            FindPackageShare("bipedal_gazebo"),
+            "config",
+            "gz_state_broadcaster_params.yaml",
+        ]
     )
 
     joint_state_broadcaster_spawner = Node(
@@ -113,17 +126,16 @@ def launch_setup(context, *args, **kwargs):
         arguments=["r_leg_forward_position_controller", "-c", "/controller_manager"],
     )
 
-
     forward_torque_controller_spawner = Node(
-            package="controller_manager",
-            executable="spawner",
-            arguments=["forward_torque_controller", "-c", "/controller_manager"],
+        package="controller_manager",
+        executable="spawner",
+        arguments=["forward_torque_controller", "-c", "/controller_manager"],
     )
 
     forward_torque_limit_controller_spawner = Node(
-            package="controller_manager",
-            executable="spawner",
-            arguments=["forward_torque_limit_controller", "-c", "/controller_manager"],
+        package="controller_manager",
+        executable="spawner",
+        arguments=["forward_torque_limit_controller", "-c", "/controller_manager"],
     )
 
     forward_speed_limit_controller_spawner = Node(
@@ -152,26 +164,32 @@ def launch_setup(context, *args, **kwargs):
     )
 
     gazebo_node = IncludeLaunchDescription(
-        PythonLaunchDescriptionSource([FindPackageShare("bipedal_gazebo"), "/launch", "/gazebo.launch.py"]),
-        condition=IfCondition(LaunchConfiguration('gazebo'))
+        PythonLaunchDescriptionSource(
+            [FindPackageShare("bipedal_gazebo"), "/launch", "/gazebo.launch.py"]
+        ),
+        condition=IfCondition(LaunchConfiguration("gazebo")),
     )
 
-    delay_robot_controller_spawner_after_joint_state_broadcaster_spawner = RegisterEventHandler(
-        event_handler=OnProcessExit(
-            target_action=joint_state_broadcaster_spawner,
-            on_exit=[
-                l_leg_forward_position_controller_spawner,
-                r_leg_forward_position_controller_spawner,
-                forward_torque_controller_spawner,
-                forward_torque_limit_controller_spawner,
-                forward_speed_limit_controller_spawner,
-                forward_pid_controller_spawner,
-            ],
-        ),
+    delay_robot_controller_spawner_after_joint_state_broadcaster_spawner = (
+        RegisterEventHandler(
+            event_handler=OnProcessExit(
+                target_action=joint_state_broadcaster_spawner,
+                on_exit=[
+                    l_leg_forward_position_controller_spawner,
+                    r_leg_forward_position_controller_spawner,
+                    forward_torque_controller_spawner,
+                    forward_torque_limit_controller_spawner,
+                    forward_speed_limit_controller_spawner,
+                    forward_pid_controller_spawner,
+                ],
+            ),
+        )
     )
 
     return [
-        *((control_node,) if not gazebo_py else (SetUseSimTime(True), gazebo_node)),
+        # *((control_node,) if not gazebo_py else (SetUseSimTime(True), gazebo_node)),
+        *((SetUseSimTime(True), gazebo_node) if gazebo_py else ()),
+        control_node,
         robot_state_publisher_node,
         joint_state_broadcaster_spawner,
         delay_rviz_after_joint_state_broadcaster_spawner,
@@ -212,4 +230,3 @@ def generate_launch_description():
             OpaqueFunction(function=launch_setup),
         ]
     )
-
