@@ -183,7 +183,6 @@ def launch_setup(context, *args, **kwargs):
     )
 
     return [
-        # *((control_node,) if not gazebo_py else (SetUseSimTime(True), gazebo_node)),
         *((SetUseSimTime(True), gazebo_node) if gazebo_py else ()),
         control_node,
         robot_state_publisher_node,
