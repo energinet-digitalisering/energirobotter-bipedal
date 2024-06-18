@@ -21,7 +21,7 @@
   <link name="world"/>
 
   <xacro:include filename="$(find bipedal_description)/urdf/phobos_generated.urdf"/>
-  <!-- NOTE: Change all relative paths "../" with "$(find bipedal_description)/" -->
+  <!-- NOTE: Change all relative paths "../" with "file://$(find bipedal_description)/" -->
 
   <gazebo reference="link_hip">
       <material>Gazebo/White</material>
