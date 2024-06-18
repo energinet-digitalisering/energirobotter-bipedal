@@ -38,12 +38,8 @@ def launch_setup(context, *args, **kwargs):
             ),
             *(
                 (" ", "use_fake_hardware:=true", " ")
-                if fake_py
-                else (
-                    (" ", "use_fake_hardware:=true use_gazebo:=true", " ")
-                    if gazebo_py
-                    else (" ",)
-                )
+                if fake_py or gazebo_py
+                else ((" ",))
             ),
             " ",
         ]

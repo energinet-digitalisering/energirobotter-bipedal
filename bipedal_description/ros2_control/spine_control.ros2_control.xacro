@@ -14,14 +14,7 @@
 
         <xacro:if value="$(arg use_fake_hardware)">
           <!-- Use gazebo as hardware simulation. -->
-          <xacro:if value="$(arg use_gazebo)">
-            <plugin>gazebo_ros2_control/GazeboSystem</plugin>
-          </xacro:if>
-
-          <!-- Use fake components. -->
-          <xacro:unless value="$(arg use_gazebo)">
-            <plugin>fake_components/GenericSystem</plugin>
-          </xacro:unless>
+          <plugin>fake_components/GenericSystem</plugin>
         </xacro:if>
       </hardware>
 
