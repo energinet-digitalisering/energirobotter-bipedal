@@ -5,6 +5,7 @@
     <parent link="link_leg.L"/>
     <child link="link_foot.L"/>
     <axis xyz="0.00000 0.00000 1.00000"/>
+    <dynamics damping="1.0" friction="1.0"/>
   </joint>
   <joint name="foot_joint.R" type="revolute">
     <limit lower="-1.57000" upper="1.57000" effort="140.00000" velocity="0.00000"/>
@@ -12,6 +13,7 @@
     <parent link="link_leg.R"/>
     <child link="link_foot.R"/>
     <axis xyz="0.00000 0.00000 1.00000"/>
+    <dynamics damping="1.0" friction="1.0"/>
   </joint>
   <joint name="hip_hinge_joint.L" type="revolute">
     <limit lower="-1.57000" upper="0.19625" effort="140.00000" velocity="0.00000"/>
@@ -19,6 +21,7 @@
     <parent link="link_hip"/>
     <child link="link_hip_hinge.L"/>
     <axis xyz="0.00000 0.00000 1.00000"/>
+    <dynamics damping="1.0" friction="1.0"/>
   </joint>
   <joint name="hip_hinge_joint.R" type="revolute">
     <limit lower="-0.19625" upper="1.57000" effort="140.00000" velocity="0.00000"/>
@@ -26,6 +29,7 @@
     <parent link="link_hip"/>
     <child link="link_hip_hinge.R"/>
     <axis xyz="0.00000 0.00000 1.00000"/>
+    <dynamics damping="1.0" friction="1.0"/>
   </joint>
   <joint name="leg_joint.L" type="revolute">
     <limit lower="-1.57000" upper="1.57000" effort="140.00000" velocity="0.00000"/>
@@ -33,6 +37,7 @@
     <parent link="link_thigh.L"/>
     <child link="link_leg.L"/>
     <axis xyz="0.00000 0.00000 1.00000"/>
+    <dynamics damping="1.0" friction="1.0"/>
   </joint>
   <joint name="leg_joint.R" type="revolute">
     <limit lower="-1.57000" upper="1.57000" effort="140.00000" velocity="0.00000"/>
@@ -40,6 +45,7 @@
     <parent link="link_thigh.R"/>
     <child link="link_leg.R"/>
     <axis xyz="0.00000 0.00000 1.00000"/>
+    <dynamics damping="1.0" friction="1.0"/>
   </joint>
   <joint name="spine_joint" type="revolute">
     <limit lower="-0.78500" upper="0.78500" effort="140.00000" velocity="0.00000"/>
@@ -47,6 +53,7 @@
     <parent link="link_hip"/>
     <child link="link_spine"/>
     <axis xyz="0.00000 0.00000 1.00000"/>
+    <dynamics damping="1.0" friction="1.0"/>
   </joint>
   <joint name="thigh_joint.L" type="revolute">
     <limit lower="-1.57000" upper="1.57000" effort="140.00000" velocity="0.00000"/>
@@ -54,6 +61,7 @@
     <parent link="link_hip_hinge.L"/>
     <child link="link_thigh.L"/>
     <axis xyz="0.00000 0.00000 1.00000"/>
+    <dynamics damping="1.0" friction="1.0"/>
   </joint>
   <joint name="thigh_joint.R" type="revolute">
     <limit lower="-1.57000" upper="1.57000" effort="140.00000" velocity="0.00000"/>
@@ -61,6 +69,7 @@
     <parent link="link_hip_hinge.R"/>
     <child link="link_thigh.R"/>
     <axis xyz="0.00000 0.00000 1.00000"/>
+    <dynamics damping="1.0" friction="1.0"/>
   </joint>
   <link name="link_foot.L">
     <collision name="foot.L_collision">

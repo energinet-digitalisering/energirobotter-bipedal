@@ -19,6 +19,7 @@
 
   <xacro:include filename="$(find bipedal_description)/urdf/phobos_generated.urdf"/>
   <!-- NOTE: Change all relative paths "../" with "file://$(find bipedal_description)/" -->
+  <!-- Add <dynamics damping="1.0" friction="1.0"/> to all joints -->
 
   <!-- Gazebo Tags -->
   <xacro:if value="$(arg use_gazebo)">
