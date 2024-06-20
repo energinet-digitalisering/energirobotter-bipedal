@@ -1,6 +1,7 @@
 controller_manager:
   ros__parameters:
     update_rate: 100  # Hz
+    use_sim_time: true
 
     joint_state_broadcaster:
       type: joint_state_broadcaster/JointStateBroadcaster
@@ -23,10 +24,6 @@ controller_manager:
     forward_pid_controller:
       type: pid_command_controller/PIDCommandController
 
-joint_state_broadcaster:
-  ros__parameters:
-    use_sim_time: false
-
 l_leg_forward_position_controller:
   ros__parameters:
     joints:
@@ -35,8 +32,7 @@ l_leg_forward_position_controller:
       - thigh_joint.L
       - foot_joint.L
     interface_name: position
-    use_sim_time: false
-
+    
 r_leg_forward_position_controller:
   ros__parameters:
     joints:
@@ -45,8 +41,6 @@ r_leg_forward_position_controller:
       - thigh_joint.R
       - foot_joint.R
     interface_name: position
-    use_sim_time: false
-
 
 forward_torque_controller:
   ros__parameters:
@@ -61,8 +55,7 @@ forward_torque_controller:
       - foot_joint.L
       - foot_joint.R
     interface_name: torque
-    use_sim_time: false
-
+    
 forward_torque_limit_controller:
   ros__parameters:
     joints:
@@ -76,8 +69,7 @@ forward_torque_limit_controller:
       - foot_joint.L
       - foot_joint.R
     interface_name: torque_limit
-    use_sim_time: false
-
+    
 forward_speed_limit_controller:
   ros__parameters:
     joints:
@@ -91,8 +83,6 @@ forward_speed_limit_controller:
       - foot_joint.L
       - foot_joint.R
     interface_name: speed_limit
-    use_sim_time: false
-
 
 forward_pid_controller:
   ros__parameters:
@@ -106,4 +96,3 @@ forward_pid_controller:
       - thigh_joint.R
       - foot_joint.L
       - foot_joint.R
-    use_sim_time: false
