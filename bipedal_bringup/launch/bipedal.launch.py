@@ -187,8 +187,7 @@ def launch_setup(context, *args, **kwargs):
     )
 
     return [
-        *((SetUseSimTime(True), gazebo_node) if gazebo_py else ()),
-        control_node,
+        *((control_node,) if not gazebo_py else (SetUseSimTime(True), gazebo_node)),
         robot_state_publisher_node,
         joint_state_broadcaster_spawner,
         delay_rviz_after_joint_state_broadcaster_spawner,
