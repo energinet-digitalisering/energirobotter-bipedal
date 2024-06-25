@@ -1,0 +1,55 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+    <!-- Control Plugin  -->
+    <!-- <gazebo>
+        <plugin name="gazebo_ros2_control" filename="libgazebo_ros2_control.so">
+            <robot_param>robot_description</robot_param>
+            <robot_param_node>robot_state_publisher</robot_param_node>
+            <parameters>$(find bipedal_description)/controllers/bipedal_controllers.yaml</parameters>
+        </plugin>
+    </gazebo> -->
+
+    <!-- Colours -->
+    <gazebo reference="link_hip">
+        <material>Gazebo/Orange</material>
+        <static>true</static>
+    </gazebo>
+
+    <gazebo reference="link_spine">
+        <material>Gazebo/Orange</material>
+    </gazebo>
+
+    <gazebo reference="link_hip_hinge.L">
+        <material>Gazebo/Orange</material>
+    </gazebo>
+
+    <gazebo reference="link_hip_hinge.R">
+        <material>Gazebo/Orange</material>
+    </gazebo>
+
+    <gazebo reference="link_thigh.L">
+        <material>Gazebo/Orange</material>
+    </gazebo>
+
+    <gazebo reference="link_thigh.R">
+        <material>Gazebo/Orange</material>
+    </gazebo>
+
+    <gazebo reference="link_leg.L">
+        <material>Gazebo/Orange</material>
+    </gazebo>
+
+    <gazebo reference="link_leg.R">
+        <material>Gazebo/Orange</material>
+    </gazebo>
+
+    <gazebo reference="link_foot.L">
+        <material>Gazebo/Orange</material>
+    </gazebo>
+
+    <gazebo reference="link_foot.R">
+        <material>Gazebo/Orange</material>
+    </gazebo>
+
+</robot>

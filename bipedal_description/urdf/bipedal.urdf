@@ -2,17 +2,14 @@
 <robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="bipedal">
 
   <!-- Macros -->
-
   <xacro:include filename="$(find bipedal_description)/ros2_control/spine_control.ros2_control.xacro"/>
   <xacro:include filename="$(find bipedal_description)/ros2_control/leg_control.ros2_control.xacro"/>
 
   <!-- Arguments -->
-
   <xacro:arg name="use_fake_hardware" default="true"/>
   <xacro:arg name="use_gazebo" default="false"/>
 
   <!-- Blender/Phobos generated description  -->
-
   <joint name="world_joint" type="fixed">
       <origin xyz="0 0 0.964145" rpy="0 0 0"/>  <!-- 0.964145 is the height of the robot from its origin -->
       <parent link="world"/>
@@ -21,23 +18,17 @@
   <link name="world"/>
 
   <xacro:include filename="$(find bipedal_description)/urdf/phobos_generated.urdf"/>
-  <!-- NOTE: Change all relative paths "../" with "package://bipedal_description/" -->
+  <!-- NOTE: Change all relative paths "../" with "file://$(find bipedal_description)/" -->
+  <!-- Add <dynamics damping="1.0" friction="1.0"/> to all joints -->
 
-  <gazebo reference="link_hip">
-      <material>Gazebo/White</material>
-      <static>true</static>
-  </gazebo>
+  <!-- Gazebo Tags -->
+  <xacro:if value="$(arg use_gazebo)">
+    <xacro:include filename="$(find bipedal_description)/urdf/bipedal_gazebo.urdf"/>
+  </xacro:if>
 
   <!-- ROS 2 Control -->
-  
   <xacro:spine_control/>
-
-  <xacro:leg_control 
-    side="L"
-  />
-
-  <xacro:leg_control 
-    side="R"
-  />
+  <xacro:leg_control side="L"/>
+  <xacro:leg_control side="R"/>
 
 </robot>
