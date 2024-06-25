@@ -2,12 +2,12 @@
 <robot xmlns:xacro="http://www.ros.org/wiki/xacro">
 
     <!-- Control Plugin  -->
-    <gazebo>
+    <!-- <gazebo>
         <plugin name="gazebo_ros2_control" filename="libgazebo_ros2_control.so">
             <robotNamespace>/bipedal</robotNamespace>
             <parameters>$(find bipedal_description)/controllers/bipedal_controllers.yaml</parameters>
         </plugin>
-    </gazebo>
+    </gazebo> -->
 
     <!-- Colours -->
     <gazebo reference="link_hip">
