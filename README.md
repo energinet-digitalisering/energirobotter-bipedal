@@ -1,3 +1,3 @@
-# Reachy Bipedal
+# Energirobotter Bipedal
 
-Workspace for controlling Energinet-custom legs for Reachy 2 by Pollen Robotics.
+Workspace for controlling Energinet-custom legs for humanoid robot.
